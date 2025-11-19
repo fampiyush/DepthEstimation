@@ -1,3 +1,7 @@
 .venv/
+<<<<<<< Updated upstream
 src/__pycache__/
 models/
+=======
+src/__pycache__/
+>>>>>>> Stashed changes

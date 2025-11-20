@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 from SimpleSGBM import run_sgbm_stage, build_sgbm
 from input import load_stereo_pair
 from visualizations import (visualize_stereo_pair, visualize_disparity, 
@@ -6,11 +7,15 @@ from rectify import _load_calibration_cached
 from postprocess import postprocess_disparity, enhance_disparity_map
 import cv2
 import numpy as np
+=======
+from input import load_stereo_pair, visualize_stereo_pair
+>>>>>>> Stashed changes
 
 if __name__ == "__main__":
     left_image_path = '../assets/stereo_pairs/im0.png'
     right_image_path = '../assets/stereo_pairs/im1.png'
 
+<<<<<<< Updated upstream
     # Load original stereo pair
     left_img_rgb, right_img_rgb = load_stereo_pair(left_image_path, right_image_path)
     visualize_stereo_pair(left_img_rgb, right_img_rgb, 
@@ -118,3 +123,7 @@ if __name__ == "__main__":
     # Final combined visualization with filtered results
     print("Showing combined visualization...")
     visualize_disparity_and_depth(disparity_enhanced, depth_filtered, left_img=left_gray)
+=======
+    left_img_rgb, right_img_rgb = load_stereo_pair(left_image_path, right_image_path)
+    visualize_stereo_pair(left_img_rgb, right_img_rgb)
+>>>>>>> Stashed changes

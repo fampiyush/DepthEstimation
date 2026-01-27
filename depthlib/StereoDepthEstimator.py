@@ -46,7 +46,7 @@ class StereoDepthEstimator:
         self.disparity_map = None
         self.depth_map = None
 
-    def configure_sgbm(self, **kwargs):
+    def configure_sgbm(self, **kwargs) -> None:
         """
         Configure SGBM parameters and rebuild matcher.
         
@@ -99,6 +99,65 @@ class StereoDepthEstimator:
             - disparity_px : Disparity map in pixels (float32)
             - depth_m : Depth map in meters (float32) or None if calibration unavailable
         """
+            disparity_px,
+            apply_fill_from_right=True,
+            invalidate_value=-1.0,
+        # num_disp = self.sgbm_params.get('num_disp', 128)
+        # min_disp = self.sgbm_params.get('min_disp', 0)
+        # crop_width = num_disp + min_disp
+        
+        # # Crop disparity map
+        # disparity_px = disparity_px[:, crop_width:]
+        
+        # # Also crop the rectified images for visualization consistency
+        # self.left_rectified = self.left_rectified[:, crop_width:]
+        # self.right_rectified = self.right_rectified[:, crop_width:]
+
+        # Step 3: Post-process disparity
+        disparity_px = postprocess_disparity(
+            disparity_px,
+            left_image=self.left_rectified,
+            max_speckle_size=int(100*self.downscale_factor),
+            max_diff=1.0,
+            outlier_threshold=2.5,
+            fill_method='inpaint',
+            apply_outlier_removal=False,
+            apply_hole_filling=False
+        )
+
+        # --- ROI crop to remove invalid left band ---
+        invalid_value = -1.0
+        x0, x1 = compute_valid_roi(disparity_px, invalid_value=invalid_value, min_valid_frac=0.60)
+        disparity_px = disparity_px[:, x0:x1]
+        # ------------------------------------------
+
+        # Optional depth
+        f_pixels = self.sgbm_params.get("focal_length", None)
+        baseline_m = self.sgbm_params.get("baseline", None)
+        doffs = self.sgbm_params.get("doffs", 0.0)
+        min_disparity = self.sgbm_params.get("min_disp", 5.0)
+        max_depth = self.sgbm_params.get("max_depth")
+
+        depth_m: Optional[np.ndarray] = None
+        # Step 4: Compute depth if calibration data available
+        f_pixels = self.sgbm_params.get('focal_length', None)
+        baseline_m = self.sgbm_params.get('baseline', None)
+        doffs = self.sgbm_params.get('doffs', 0.0)
+        min_disparity = self.sgbm_params.get('min_disp', 5.0)
+        max_depth = self.sgbm_params.get('max_depth')
+        
+        depth_m = None
+        if f_pixels is not None and baseline_m is not None:
+            depth_m = self.disparity_to_depth(
+                disparity_px,
+                float(f_pixels),
+                float(baseline_m),
+                doffs=float(doffs),
+                eps=float(min_disparity),
+                max_depth=max_depth,
+            )
+
+
         if self.left_source is None or self.right_source is None:
             raise ValueError("Left and right sources must be provided for depth estimation.")
         disparity_px, depth_m = self.core.estimate_depth(self.left_source, self.right_source)
@@ -114,8 +173,6 @@ class StereoDepthEstimator:
         """
         if self.disparity_map is None:
             raise ValueError("Disparity map not computed. Call estimate_depth() first.")
-        
-        visualize_disparity(self.disparity_map, title='Disparity Map (Raw)', cmap='jet')
 
         if self.depth_map is None:
             raise ValueError("Depth map not computed. Call estimate_depth() with calibration data first.")

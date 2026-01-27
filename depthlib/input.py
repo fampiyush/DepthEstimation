@@ -45,6 +45,9 @@ def load_stereo_pair(left_image_path, right_image_path, downscale_factor=1.0):
     return left_img_rgb, right_img_rgb
 
 
+    return left_img_rgb, right_img_rgb
+
+
 # --- Live video helpers ---
 
 def open_capture(source: Union[int, str]) -> cv2.VideoCapture:

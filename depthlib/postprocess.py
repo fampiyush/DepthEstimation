@@ -1,4 +1,8 @@
-"""Post-processing utilities for disparity and depth maps."""
+"""
+Post-processing utilities for disparity maps.
+"""
+
+from typing import Optional
 
 import cv2
 import numpy as np

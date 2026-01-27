@@ -1,6 +1,9 @@
-"""Stereo image rectification utilities."""
+"""
+Rectification utilities.
 
-from __future__ import annotations
+Current version assumes the user provides already-rectified pairs unless
+calibration matrices are set in the estimator.
+"""
 
 import warnings
 from typing import Tuple, Optional, Dict, Any

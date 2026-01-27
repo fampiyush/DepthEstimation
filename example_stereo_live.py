@@ -37,7 +37,10 @@ def main():
         hole_filling=True,
     )
 
-    estimator.estimate_depth()
+    # Consume the generator to get each depth map
+    for depth_m in estimator.estimate_depth():
+        # Use depth_m here (e.g., save, analyze, etc.)
+        pass
 
 
 if __name__ == "__main__":

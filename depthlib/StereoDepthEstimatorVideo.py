@@ -67,7 +67,11 @@ class StereoDepthEstimatorVideo:
         self.core.configure_sgbm(**kwargs)
 
     def estimate_depth(self):
-        '''Estimate depth from the stereo video streams.'''
+        '''Estimate depth from the stereo video streams.
+
+        Yields:
+            numpy.ndarray: depth map (meters) for each frame.
+        '''
         if self.left_source is None or self.right_source is None:
             raise ValueError("Both left_source and right_source must be provided for video depth estimation.")
 
@@ -96,6 +100,8 @@ class StereoDepthEstimatorVideo:
                     left_frame, right_frame = frame_pair
                     disparity_px, depth_m = self.core.estimate_depth(left_frame, right_frame)
 
+                    yield depth_m
+
                     if self.visualize_live:
                         if self.visualize_gray:
                             visualize_depth_live_gray(depth_m, self.target_fps)
@@ -120,6 +126,8 @@ class StereoDepthEstimatorVideo:
             frame_start_time = time.time()
             for left_frame, right_frame in stereo_stream(self.left_source, self.right_source, downscale_factor=self.downscale_factor):
                 disparity_px, depth_m = self.core.estimate_depth(left_frame, right_frame)
+
+                yield depth_m
 
                 if self.visualize_live:
                     if self.visualize_gray:

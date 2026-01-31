@@ -1,6 +1,11 @@
 # Depthlib
 A python library for depth estimation using stereo vision
 
+## Install
+```bash
+pip install depthlib
+```
+
 ## Development Environment Setup
 
 Follow these steps to prepare the project environment:

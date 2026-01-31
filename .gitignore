@@ -4,3 +4,5 @@ assets/
 __pycache__/
 .pytest_cache/
 docs/site/
+*.egg-info/
+dist/

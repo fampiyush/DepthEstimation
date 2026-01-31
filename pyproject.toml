@@ -1,6 +1,6 @@
 [project]
 name = "depthlib"
-version = "0.1.0"
+version = "0.1.1"
 description = "A library for depth estimation and processing"
 authors = [
     { name = "Piyush Gupta" },

@@ -6,13 +6,41 @@ This guide will help you set up Depthlib and run your first depth estimation.
 
 ## Installation
 
-### 1. Create a Virtual Environment
+### Quick Install (Recommended)
+
+```bash
+pip install depthlib
+```
+
+For GPU acceleration, also install PyTorch with CUDA support:
+
+```bash
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
+```
+
+!!! tip "Finding Your CUDA Version"
+    Visit [pytorch.org/get-started/locally](https://pytorch.org/get-started/locally/) to select the correct CUDA version for your system.
+
+---
+
+### Development Installation
+
+If you want to contribute or modify the library, follow these steps:
+
+#### 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/depthlib.git
+cd depthlib
+```
+
+#### 2. Create a Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-### 2. Activate the Virtual Environment
+#### 3. Activate the Virtual Environment
 
 === "Windows"
 
@@ -26,13 +54,19 @@ python -m venv venv
     source venv/bin/activate
     ```
 
-### 3. Install Dependencies
+#### 4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Install PyTorch
+#### 5. Install in Editable Mode
+
+```bash
+pip install -e .
+```
+
+#### 6. Install PyTorch
 
 Choose the appropriate version based on your hardware:
 
@@ -45,9 +79,6 @@ pip install torch
 ```bash
 pip install torch torchvision --index-url https://download.pytorch.org/whl/cu128
 ```
-
-!!! tip "Finding Your CUDA Version"
-    Visit [pytorch.org/get-started/locally](https://pytorch.org/get-started/locally/) to select the correct CUDA version for your system.
 
 ---
 

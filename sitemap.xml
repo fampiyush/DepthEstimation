@@ -1,35 +1,3 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    <url>
-         <loc>https://fampiyush.github.io/depthlib/</loc>
-         <lastmod>2026-02-08</lastmod>
-    </url>
-    <url>
-         <loc>https://fampiyush.github.io/depthlib/examples/</loc>
-         <lastmod>2026-02-08</lastmod>
-    </url>
-    <url>
-         <loc>https://fampiyush.github.io/depthlib/getting_started/</loc>
-         <lastmod>2026-02-08</lastmod>
-    </url>
-    <url>
-         <loc>https://fampiyush.github.io/depthlib/mono_depth/</loc>
-         <lastmod>2026-02-08</lastmod>
-    </url>
-    <url>
-         <loc>https://fampiyush.github.io/depthlib/sgbm_config/</loc>
-         <lastmod>2026-02-08</lastmod>
-    </url>
-    <url>
-         <loc>https://fampiyush.github.io/depthlib/stereo_image/</loc>
-         <lastmod>2026-02-08</lastmod>
-    </url>
-    <url>
-         <loc>https://fampiyush.github.io/depthlib/stereo_video/</loc>
-         <lastmod>2026-02-08</lastmod>
-    </url>
-    <url>
-         <loc>https://fampiyush.github.io/depthlib/visualizations/</loc>
-         <lastmod>2026-02-08</lastmod>
-    </url>
 </urlset>

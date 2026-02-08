@@ -1,6 +1,8 @@
 site_name: Depthlib Documentation
 site_description: A Python library for depth estimation using stereo vision and monocular models
 site_author: Depthlib Team
+docs_dir: docs
+site_dir: site
 
 theme:
   name: material

@@ -6,6 +6,8 @@ A python library for depth estimation using stereo vision
 pip install depthlib
 ```
 
+Depthlib documentation/references - https://fampiyush.github.io/DepthEstimation/
+
 ## Development Environment Setup
 
 Follow these steps to prepare the project environment:

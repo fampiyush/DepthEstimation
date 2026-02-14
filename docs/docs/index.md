@@ -28,9 +28,18 @@ The library provides simple, high-level APIs that abstract away internal image p
 
 ## Quick Start
 
-### Installation
+## Installation
 
 ```bash
+pip install depthlib
+```
+
+### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/your-username/depthlib.git
+
 # Create virtual environment
 python -m venv venv
 
